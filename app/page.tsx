@@ -2,7 +2,6 @@ import CompanionCard from "@/components/CompanionCard";
 import CompanionsList from "@/components/CompanionsList";
 import CTA from "@/components/CTA";
 import { Button } from "@/components/ui/button";
-import { recentSessions } from "@/constants";
 import { getAllCompanions, getRecentSessions } from "@/lib/actions/companion.actions";
 import { getSubjectColor } from "@/lib/utils";
 import React from "react";
@@ -35,7 +34,7 @@ const Page = async () => {
         <CTA />
       </section>
 
-      <Button>Let's get started</Button>
+      <Button>Let us get started</Button>
     </main>
   );
 };
