@@ -23,9 +23,14 @@ const CompanionsList = ({
   companions,
   classNames,
 }: CompanionsListProps) => {
+
+  const uniqueCompanions = Array.from(
+    new Map(companions?.map((c) => [c.id, c])).values()
+  );
+
   return (
     <article className={cn("companion-list", classNames)}>
-      <h2 className="font-bold text-3xl">Recent Sessions</h2>
+      <h2 className="font-bold text-3xl">{title}</h2>
       <Table>
         <TableHeader>
           <TableRow>
@@ -35,7 +40,7 @@ const CompanionsList = ({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {companions?.map(({ id, subject, name, topic, duration }) => (
+          {uniqueCompanions.map(({ id, subject, name, topic, duration }) => (
             <TableRow key={id}>
               <TableCell>
                 <Link href={`/companions/${id}`}>
@@ -76,10 +81,16 @@ const CompanionsList = ({
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2 w-full justify-end">
-                    <p className="text-2xl">{duration} { ' ' }
-                        <span className="max-md:hidden">mins</span>
-                    </p>
-                    <Image src='/icons/clock.svg' alt="minutes" width={14} height={14} className="md:hidden"/>
+                  <p className="text-2xl">
+                    {duration} <span className="max-md:hidden">mins</span>
+                  </p>
+                  <Image
+                    src="/icons/clock.svg"
+                    alt="minutes"
+                    width={14}
+                    height={14}
+                    className="md:hidden"
+                  />
                 </div>
               </TableCell>
             </TableRow>
